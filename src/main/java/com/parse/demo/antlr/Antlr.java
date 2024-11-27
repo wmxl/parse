@@ -42,8 +42,8 @@ public class Antlr {
                 
                 // Print parsed constants for verification
 //                System.out.println("\nParsed constants:");
-                constantsMap.forEach((key, value) -> 
-                    System.out.println(key + " = " + value));
+//                constantsMap.forEach((key, value) ->
+//                    System.out.println(key + " = " + value));
             }
 
             // Then parse controller files
@@ -132,21 +132,21 @@ public class Antlr {
     }
 
     private static void parseFile(String filePath, ParseTreeListener listener) throws IOException {
-//        System.out.println("Processing file: " + filePath);
-        
         CharStream input = CharStreams.fromFileName(filePath);
         Java8Lexer lexer = new Java8Lexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         Java8Parser parser = new Java8Parser(tokens);
         
+        // Remove default error listeners
+        lexer.removeErrorListeners();
         parser.removeErrorListeners();
-        parser.addErrorListener(new BaseErrorListener() {
-            @Override
-            public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, 
-                                  int line, int charPositionInLine, String msg, RecognitionException e) {
-                System.err.println("Warning: Parse error at line " + line + ":" + charPositionInLine + " " + msg);
-            }
-        });
+//        parser.addErrorListener(new BaseErrorListener() {
+//            @Override
+//            public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol,
+//                                  int line, int charPositionInLine, String msg, RecognitionException e) {
+//                System.err.println("Warning: Parse error at line " + line + ":" + charPositionInLine + " " + msg);
+//            }
+//        });
 
         ParseTree tree = parser.compilationUnit();
         ParseTreeWalker walker = new ParseTreeWalker();

@@ -35,3 +35,13 @@ This project provides tools and utilities for parsing, analyzing, and manipulati
   - Custom grammar definition
   - Multi-language parsing support
   - Flexible token processing 
+
+## Build Instructions
+
+When using ANTLR4, you need to generate the parser code from your grammar files:
+
+```bash
+mvn generate-sources
+```
+
+This command will process your `.g4` grammar files and generate the necessary lexer and parser classes.
