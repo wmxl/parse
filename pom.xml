@@ -47,6 +47,11 @@
             <artifactId>org.eclipse.jgit</artifactId>
             <version>5.13.1.202206130422-r</version>
         </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.6</version>
+        </dependency>
     </dependencies>
     
     <build>
@@ -69,6 +74,12 @@
                 <groupId>org.antlr</groupId>
                 <artifactId>antlr4-maven-plugin</artifactId>
                 <version>4.7.2</version>
+                <configuration>
+                    <sourceDirectory>${basedir}/src/main/java/com/parse/demo/antlr</sourceDirectory>
+                    <outputDirectory>${basedir}/target/generated-sources/com/parse/demo</outputDirectory>
+                    <visitor>true</visitor>
+                    <listener>true</listener>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
